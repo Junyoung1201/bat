@@ -86,7 +86,7 @@ rd /s /q "%userprofile%\AppData\Local\User Data\Default\Thumbnails"
 echo 기타 어플리케이션 캐시 파일 및 파일기록 데이터 삭제
 
 :: 파일 탐색기 캐시 db 삭제
-dir /s /q "%LocalAppData%\Microsoft\Windows\Explorer\*.db"
+del /s /q "%LocalAppData%\Microsoft\Windows\Explorer\*.db"
 
 :: 토파츠 AI
 rd /q /s "%userprofile%\AppData\Local\mpv"
@@ -117,4 +117,5 @@ reg delete HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /f
 wevtutil cl Application
 
 :: ssd trim 수동 실행
+
 defrag C: /L /V
