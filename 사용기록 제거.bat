@@ -1,13 +1,13 @@
 @echo off
 cls
-title ì‚¬ìš©ê¸°ë¡ ì œê±° ì¤‘
+title »ç¿ë±â·Ï Á¦°Å Áß
 
 C:
 
 set cDef_1=%LOCALAPPDATA%\Google\Chrome\User Data\Default
 set cDef_2=%userprofile%\Local Settings\Application Data\Google\Chrome\User Data\Default
 
-echo í¬ë¡¬ ì‚¬ìš©ê¸°ë¡ ì‚­ì œ
+echo Å©·Ò »ç¿ë±â·Ï »èÁ¦
 del /s /q "%cDef_1%\History"
 del /s /q "%cDef_1%\History-journal"
 del /s /q "%cDef_1%\Login Data"
@@ -83,39 +83,44 @@ del /s /q "%userprofile%\AppData\Local\User Data\Default\GPUCache\*"
 del /s /q "%userprofile%\AppData\Local\User Data\Default\Sync Data\*"
 rd /s /q "%userprofile%\AppData\Local\User Data\Default\Thumbnails"
 
-echo ê¸°íƒ€ ì–´í”Œë¦¬ì¼€ì´ì…˜ ìºì‹œ íŒŒì¼ ë° íŒŒì¼ê¸°ë¡ ë°ì´í„° ì‚­ì œ
+echo ±âÅ¸ ¾îÇÃ¸®ÄÉÀÌ¼Ç Ä³½Ã ÆÄÀÏ ¹× ÆÄÀÏ±â·Ï µ¥ÀÌÅÍ »èÁ¦
 
-:: íŒŒì¼ íƒìƒ‰ê¸° ìºì‹œ db ì‚­ì œ
+:: ÆÄÀÏ Å½»ö±â Ä³½Ã db »èÁ¦
 del /s /q "%LocalAppData%\Microsoft\Windows\Explorer\*.db"
 
-:: í† íŒŒì¸  AI
+:: ÅäÆÄÃ÷ AI
 rd /q /s "%userprofile%\AppData\Local\mpv"
 rd /q /s "%localappdata%\Topaz Labs LLC\Topaz Photo AI\cache"
 
-:: í¬í† ìƒµ 2025 ì‚¬ì§„ ì—´ëŒ ë‚´ì—­
+:: Æ÷Åä¼¥ 2025 »çÁø ¿­¶÷ ³»¿ª
 del /q /s "%appdata%\Adobe\Adobe Photoshop 2025\Adobe Photoshop 2025 Settings\MachinePrefs.psp"
 
-:: ë§ˆì†Œ ìŒì•… ì•±
+:: ¸¶¼Ò À½¾Ç ¾Û
 del /q /s "%localappdata%\Packages\Microsoft.ZuneMusic_8wekyb3d8bbwe\LocalState\MediaPlayer.db-wal"
 del /q /s "%localappdata%\Packages\Microsoft.ZuneMusic_8wekyb3d8bbwe\LocalState\MediaPlayer.db-shm"
 del /q /s "%localappdata%\Packages\Microsoft.ZuneMusic_8wekyb3d8bbwe\LocalState\MediaPlayer.db"
 
-echo ì„ì‹œ íŒŒì¼ ì‚­ì œ
+echo ÀÓ½Ã ÆÄÀÏ »èÁ¦
 del /q /s "%APPDATA%\Microsoft\Windows\Recent\*"
 rd /q /s "%TEMP%\*"
 
-echo ìœˆë„ìš° ë©”ëª¨ë¦¬ ë¤í”„ ì‚­ì œ
+echo À©µµ¿ì ¸Ş¸ğ¸® ´ıÇÁ »èÁ¦
 del /s /q "C:\Windows\Memory.dmp"
 del /s /q "C:\Windows\Minidump\*.dmp"
 
-echo ìœˆë„ìš° í”„ë¦¬í˜ì³ ì‚­ì œ
+echo À©µµ¿ì ÇÁ¸®ÆäÃÄ »èÁ¦
 del /s /q "C:\Windows\Prefetch\*.*"
 
-reg delete HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /f
+echo ÆÄÀÏ Å½»ö±â °æ·Î Ç¥½ÃÁÙÀÇ ÃÖ±Ù °æ·Î ³»¿ª »èÁ¦
+del /s /q /f "%APPDATA%\Microsoft\Windows\Recent\AutomaticDestinations\*"
+del /s /q /f "%APPDATA%\Microsoft\Windows\Recent\CustomDestinations\*"
+reg delete HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /VA /F
+reg delete HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths /VA /F 
 
-:: ì´ë²¤íŠ¸ ë¡œê·¸ ì‚­ì œ
+rundll32 InetCpl.cpl,ClearMyTracksByProcess 1
+
+echo ÀÌº¥Æ® ·Î±× »èÁ¦
 wevtutil cl Application
 
-:: ssd trim ìˆ˜ë™ ì‹¤í–‰
-
+echo trim ½ÇÇà
 defrag C: /L /V
