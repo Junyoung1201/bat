@@ -118,14 +118,20 @@ timeout /t 1 /nobreak > NUL
 mkdir "%temp%"
 )
 
+echo.
 echo 윈도우 메모리 덤프 삭제
+echo.
 del /s /q "C:\Windows\Memory.dmp"
 del /s /q "C:\Windows\Minidump\*.dmp"
 
+echo.
 echo 윈도우 프리페쳐 삭제
+echo.
 del /s /q "C:\Windows\Prefetch\*.*"
 
+echo.
 echo 파일 탐색기 경로 표시줄의 최근 경로 내역 삭제
+echo.
 del /s /q /f "%APPDATA%\Microsoft\Windows\Recent\AutomaticDestinations\*"
 del /s /q /f "%APPDATA%\Microsoft\Windows\Recent\CustomDestinations\*"
 reg delete HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /VA /F
@@ -133,8 +139,17 @@ reg delete HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths /V
 
 rundll32 InetCpl.cpl,ClearMyTracksByProcess 1
 
+echo.
+echo AppData 내 로그파일 삭제
+echo.
+del /s /q *.log
+
+echo.
 echo 이벤트 로그 삭제
+echo.
 wevtutil cl Application
 
+echo.
 echo trim 실행
+echo.
 defrag C: /L /V
