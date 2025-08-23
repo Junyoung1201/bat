@@ -7,7 +7,9 @@ C:
 set cDef_1=%LOCALAPPDATA%\Google\Chrome\User Data\Default
 set cDef_2=%userprofile%\Local Settings\Application Data\Google\Chrome\User Data\Default
 
+echo.
 echo 크롬 사용기록 삭제
+echo.
 del /s /q "%cDef_1%\History"
 del /s /q "%cDef_1%\History-journal"
 del /s /q "%cDef_1%\Login Data"
@@ -83,26 +85,38 @@ del /s /q "%userprofile%\AppData\Local\User Data\Default\GPUCache\*"
 del /s /q "%userprofile%\AppData\Local\User Data\Default\Sync Data\*"
 rd /s /q "%userprofile%\AppData\Local\User Data\Default\Thumbnails"
 
-echo 기타 어플리케이션 캐시 파일 및 파일기록 데이터 삭제
-
-:: 파일 탐색기 캐시 db 삭제
+echo.
+echo 파일 탐색기 캐시 db 삭제
+echo.
 del /s /q "%LocalAppData%\Microsoft\Windows\Explorer\*.db"
 
-:: 토파츠 AI
+echo.
+echo 토파츠 AI
+echo.
 rd /q /s "%userprofile%\AppData\Local\mpv"
 rd /q /s "%localappdata%\Topaz Labs LLC\Topaz Photo AI\cache"
 
-:: 포토샵 2025 사진 열람 내역
+echo.
+echo 포토샵 2025 사진 열람 내역
+echo.
 del /q /s "%appdata%\Adobe\Adobe Photoshop 2025\Adobe Photoshop 2025 Settings\MachinePrefs.psp"
 
-:: 마소 음악 앱
+echo.
+echo 마이크로소프트 음악 앱 사용 기록
+echo.
 del /q /s "%localappdata%\Packages\Microsoft.ZuneMusic_8wekyb3d8bbwe\LocalState\MediaPlayer.db-wal"
 del /q /s "%localappdata%\Packages\Microsoft.ZuneMusic_8wekyb3d8bbwe\LocalState\MediaPlayer.db-shm"
 del /q /s "%localappdata%\Packages\Microsoft.ZuneMusic_8wekyb3d8bbwe\LocalState\MediaPlayer.db"
 
+echo.
 echo 임시 파일 삭제
+echo.
 del /q /s "%APPDATA%\Microsoft\Windows\Recent\*"
-rd /q /s "%TEMP%\*"
+if exist "%temp%" (
+rd /s /q "%temp%"
+timeout /t 1 /nobreak > NUL
+mkdir "%temp%"
+)
 
 echo 윈도우 메모리 덤프 삭제
 del /s /q "C:\Windows\Memory.dmp"
